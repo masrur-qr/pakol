@@ -101,11 +101,11 @@ class ToursView(TemplateView):
                 myfilter &= (Q(tour_departures__DepartingDate__gt=DepartingDate) and Q(tour_departures__FinishingDate__lt=FinishingDate))
         elif request.GET.get("DepartingDate") != None:
             DepartingDate = request.GET.get('DepartingDate')
-            if DepartingDate is not '':
+            if DepartingDate != '':
                 myfilter &= Q(tour_departures__DepartingDate__gt=DepartingDate)
         elif request.GET.get("FinishingDate") != None:
             FinishingDate = request.GET.get('FinishingDate')
-            if FinishingDate is not '':
+            if FinishingDate != '':
                 myfilter &= Q(tour_departures__FinishingDate__lt=FinishingDate)
 
         
