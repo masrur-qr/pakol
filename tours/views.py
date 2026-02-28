@@ -94,7 +94,7 @@ class ToursView(TemplateView):
         if request.GET.get("DepartingDate") != None and request.GET.get("DepartingDate") != None:
             DepartingDate = request.GET.get('DepartingDate')
             FinishingDate = request.GET.get('FinishingDate')
-            if DepartingDate is not '' and FinishingDate is not '':
+            if DepartingDate != '' and FinishingDate != '':
                 DepartingDate=datetime.datetime.strptime(DepartingDate, '%m/%d/%Y').strftime('%Y-%m-%d')
                 FinishingDate=datetime.datetime.strptime(FinishingDate, '%m/%d/%Y').strftime('%Y-%m-%d')
 
