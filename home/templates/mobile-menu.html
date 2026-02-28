@@ -1,0 +1,52 @@
+<div class="mobile-menu-navbar">
+    <div class="mobile-menu position-relative">
+        <div class="mobile-menu-button nav-mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="mobile-menu-navbar">
+            <div class="mobile-menu-overlay nav-mobile-menu"></div>
+            <div class="mobile-menu-content">
+                <div class="close-mobile-menu nav-mobile-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="m-brand-logo text-center">
+                    <a href="#"><img src="/static/logo/logo-white.png" alt="Pakol Travel"></a>
+                </div>
+                <nav class="mobile-main-nav  clearfix ul-li">
+                    <ul id="m-main-nav" class="navbar-nav text-capitalize clearfix">
+                        <li >
+                            <a href="{% url 'home:homePage' %}">Home</a>
+                        </li>
+                     
+                        <li class="dropdown">
+                            <a href="#">About</a>
+                            <ul class="dropdown-menu clearfix">
+                                <li><a href="{% url 'home:aboutUs' %}">Who we are?</a></li>
+                                <li><a href="{% url 'home:faq' %}">FAQ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url 'home:homePage' %}">Services</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Tours</a>
+                            <ul class="dropdown-menu clearfix">
+                                <li><a href="{% url 'tours:tours' %}">All tours</a></li>
+                                <li><a href="{% url 'tours:tours' %}?Activities=trekking">Trekking</a></li>
+                                <li><a href="{% url 'tours:tours' %}?Activities=hiking">Hiking</a></li>
+                                <li><a href="{% url 'tours:tours' %}?Activities=jeep-tour">Jeep Tour</a></li>
+                            </ul>
+                        </li>
+                        <li >
+                            <a href="{% url 'blog:blog' %}">Blog</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'home:contacts' %}">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- /Mobile-Menu -->
+</div>

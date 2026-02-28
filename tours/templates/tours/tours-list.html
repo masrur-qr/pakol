@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %} {% load i18n %}{% load customtags %}
+
+			{% block addToHead %}
+			
+			{% endblock addToHead %}
+			{% block addToFooter %}  
+			
+			{% endblock addToFooter %} 
+			{% block title %}{{SEO.Title}}{% endblock title %}
+			
+			
+			{% block mainWrapper %}
+
+            <!-- Bread Crumb STRAT -->
+            <section class="bread bread-banner">
+                <div class="container">
+                <div class="bread-detail text-center d-md-flex align-items-center justify-content-between">
+                    <h4 class="bread-title mb-3 mb-md-0">Our Tours</h4>
+
+                    <div class="bread-crumb">
+                    <ul>
+                        <li class="breadcrumb-item"><a href="{% url 'home:homePage' %}"><i class="fa fa-home"></i> Home</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="#">Tours</a></li> -->
+                        <li class="breadcrumb-item active"><a href="#">Our tours</a></li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <!-- Bread Crumb END -->
+
+            <!--package Block Start -->
+            <section class="ptb-100">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-12">
+                            <!-- sorting  -->
+                            <div class="shorting mb-30 mb-xs-15">
+                                <div class="row ">
+                                    <div class="col-xl-6 col-12">
+                                        <div class="view">
+                                            <div class="list-types grid active "> 
+                                                <a>
+                                                    <div class="grid-icon list-types-icon"></div>
+                                                </a> 
+                                            </div>
+                                            <div class="list-types list"> 
+                                                <a>
+                                                    <div class="list-icon list-types-icon"></div>
+                                                </a> 
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-xl-6 col-12">
+                                        <div class="short-by float-left-lg float-right mt-lg-20"> 
+                                            
+                                            <span>Sort By :</span>
+                                            <div class="select-item">
+                                                <div class=" select-dropdown ">
+                                                    <div class="drop-option">
+                                                        <div class="drop-list">
+                                                            <span>Name : Z To A</span>
+                                                            <div  class="dropdown-arrow"><i class="fa fa-angle-down"></i></div>
+                                                        </div>
+                                                        <div class="select-option" style="display: none;">
+                                                            <a href="#">Price : Low &gt; High</a>
+                                                            <a href="#">Price : High &gt; Low</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- sorting End -->
+
+                            <!--  Shop Product -->
+                            <div class="product-listing grid-type">
+                                <div class="inner-listing">
+                                    <div class="row">
+                                        {% for tour in tours %}
+                                        <div class="col-lg-4 col-md-6 col-12 item-width mb-30">
+                                            <div class="product-item box-shadow card packages-box overflow-hidden">
+                                                <figure>
+                                                    <div class="package-img">
+                                                        <a href="{{tour.get_absolute_url }}">
+                                                            <img class="grid-img" alt="{{tour.Title}}" src="{{tour.image_thumbnail.url}}">
+                                                            <div class="effect"></div>
+                                                        </a>
+                                                    </div> 
+                                                    <figcaption>
+                                                        <div class="card-body p-25 p-xs-15">
+                                                            <div class="packages-details">
+                                                                <h4><a href="{{tour.get_absolute_url }}" class="title">{{tour.Title }}</a></h4>
+                                                                <div class="d-xl-flex align-items-center mt-3 mt-xl-4"> 
+                                                                    <div class="tour-info"> 
+                                                                        <ul>
+                                                                            <li>
+                                                                                <div class="days"><span><i class="far fa-clock"></i></span> {{tour.NumberOfDays}} days,{{tour.NumberOfNights}} nights</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="places"><span><i class="fas fa-map-marker-alt"></i></span> {{tour.Destination}}</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div> 
+                                                                    <div class="price-box ml-xl-auto text-xl-center mt-xl-0 mt-3"> 
+                                                                        <div class="price-text mb-1">Price</div> 
+                                                                        <div class="price mb-0">${{tour.Price|floatformat:"0"}}</div> 
+                                                                    </div>  
+                                                                </div>
+                                                                <p class="dec mb-0 mt-3">{{tour.ShortDesc}}</p>
+                                                                <div class="packages-btn mt-30 mt-xs-20">
+                                                                <a class="btn btn-color mr-1 mr-xl-3" href="{{tour.get_absolute_url }}">Book Now</a>
+                                                                <a class="btn btn-light" href="{{tour.get_absolute_url }}">View Detail</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>                                
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <hr>
+
+                                    <!-- Pagination  -->
+                                    {% if tours.has_other_pages %}
+                                    <div class="d-md-flex align-items-center justify-content-between pt-30 text-center">
+                                        <div class="show-item"> 
+                                            <!-- <div class="mb-0">Showing <b>1 to 10</b> of 30 entries</div> -->
+                                        </div>
+
+                                        <div class="pagination-bar mt-sm-30">
+                                            <ul>
+                                                {% if tours.has_previous %}
+                                                <li><a href="?page={{ tours.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                                                {% else %}
+                                                <li><a href="javascript:void(0)"><i class="fa fa-angle-left"></i></a></li>
+                                                {% endif %}
+                                                {% for i in tours.paginator.page_range %}
+                                                {% if tours.number == i %}
+                                                <li class="active"><a href="javascript:void(0)">{{i}}</a></li>
+                                                {% else %}
+                                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% if tours.has_next %}
+                                                <li><a href="?page={{ tours.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                                                {% else %}
+                                                <li><a href="javascript:void(0)"><i class="fa fa-angle-right"></i></a></li>
+                                                {% endif %}
+
+
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    {% endif %} 
+                                    <!-- Pagination / -->
+
+
+                                </div>
+                            </div>
+                            <!--  Shop Product -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--package Block End -->
+
+            
+
+			{% endblock mainWrapper %} 	
+
+        {% block SMMMetaTags %}{% include 'home/SEO.html' %}{% endblock SMMMetaTags %}

@@ -1,0 +1,51 @@
+<div class="blog-sidebar">
+    <div class="blog-widget-item">
+        <div class="search-widget position-relative">
+            <form action="#" method="post">
+                <input type="text" placeholder="Search">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="blog-widget-item">
+        <div class="category-widget headline ul-li-block position-relative">
+            <h3 class="widget-title">Category</h3>
+            <ul>
+                {% for tag in tags %}
+                <li>
+                    <a href="{% url 'blog:tagged' tag.slug %}" >{{ tag|title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="blog-widget-item">
+        <div class="recent-blog-widget clearfix">
+            <h3 class="widget-title">Recent Posts</h3>
+            {% for post in recent_posts %}
+            <div class="recent-blog-content">
+                <div class="recent-blog-img float-left">
+                    {% if post.posttype == 'image' %}
+                    <img src="{{post.image_thumbnail.url}}" alt="{{post.Title}}" width="100%">
+                    {% else %}
+                    <div class="youtube-wrapper">
+                        <div class="youtube youtube-sm" data-embed="{{post.VideoEmbedCode}}">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="recent-blog-text">
+                    <h3>
+                        <a href="#">
+                            {{post.Title}}
+                        </a>
+                    </h3>
+                    <span>{{post.Created|date:"M d, Y"}}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>

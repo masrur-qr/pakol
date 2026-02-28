@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %} {% load i18n %}{% load customtags %}
+
+			{% block addToHead %}
+			
+			{% endblock addToHead %}
+			{% block addToFooter %}  
+			
+			{% endblock addToFooter %} 
+			{% block title %}{{SEO.Title}}{% endblock title %}
+			
+			
+			{% block mainWrapper %}
+
+            <!-- Start of breadcrumb section
+            ============================================= -->
+            <section id="breadcrumb" class="breadcrumb-section position-relative" data-background="/static/img/banner/banner-bg.jpg">
+                <span class="breadcrumb-overlay position-absolute"></span>
+                <div class="container">
+                    <div class="breadcrumb-content text-center headline">
+                        <h2>Tours</h2>
+                        <div class="breadcrumb-item ul-li">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Tours</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End of breadcrumb section
+            ============================================= -->
+            <!-- Start of activity page section
+            ============================================= -->
+            <section id="activity-page-activity" class="activity-page-activity-section">
+                <div class="container">
+                    <div class="activity-page-activity-content">
+                        <div class="activity-page-activity-content-top">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="activity-grid-top-bar">
+                                        <div class="activity-grid-showing-result">
+                                            <div class="activity-grid-list float-left">
+                                                <!-- <a href="#"><i class="fas fa-th"></i></a> -->
+                                                <!-- <a href="#"><i class="fas fa-list"></i></a> -->
+                                            </div>
+                                            <span class="show-result-text">Showing {{filteredToursCounter}} tours </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="activity-grid-top-bar">
+                                        <div class="activity-search position-relative">
+                                            <form action="{% url 'tours:tours' %}" method="GET">
+                                                <input type="text" name="Title" placeholder="Enter your activity">
+                                                <button>Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-page-activities-item">
+                            <div class="row">
+                                {% for tour in tours %}
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="activity-item-card">
+                                        <div class="activity-item-img text-center">
+                                            <img src="{{tour.image_thumbnail.url}}" alt="{{tour.Title}}">
+                                        </div>
+                                        <div class="activity-item-text">
+                                            <div class="activity-item-fee clearfix">
+                                                <span>Price:</span>
+                                                <div class="activity-fee-amount">
+                                                    <!-- <del>$860</del> -->
+                                                    <strong>${{tour.Price|floatformat:"0"}}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item-title headline">
+                                                <h3>
+                                                    <a href="{{tour.get_absolute_url}}">
+                                                        {{tour.Title}}
+                                                    </a>
+                                                </h3>
+                                                <div class="activity-meta">
+                                                    <a href="#"><i class="far fa-clock"></i>{{tour.Duration}} days</a>
+                                                    <a href="#"><i class="fa fa-map-marker-alt"></i>{{tour.Destination.Area}} </a>
+                                                    <a href="#"><i class="fas fa-running"></i>
+                                                        {% for tourActivity in tour.tourActivities.all %}
+                                                        {{tourActivity}}{% if not forloop.last  %},{%endif 	%}
+                                                        {% endfor %}
+                                                    </a>
+                                                    <a href="#"><i class="fas fa-headphones"></i> Guided</a>
+                                                </div>
+                                            </div>
+                                            <div class="activity-rating clearfix">
+                                                <!-- <ul>
+                                                
+                                                    <li></li>
+                                                </ul> -->
+                                                <span></span>
+                                                <div class="review">
+                                                    {{tour.NumberOfDays}} days  <br>
+                                                    {{tour.NumberOfNights}} nights  
+                                                <br>
+                                                </div>
+                                            </div>
+                                            <div class="p-activity-btn float-right">
+                                                <a href="{{tour.get_absolute_url}}"><i class="fas fa-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+								<div class="col-sm-12">
+									<div class="alert alert-warning" role="alert">
+										<p><i>Not found :( </i></p>
+									</div>
+								</div>
+								{% endfor %}
+                            </div>
+                            <!-- <div class="activity-pagination text-center ul-li">
+                                <ul>
+                                    <li>
+                                        <a href="#">01</a>
+                                        <a href="#">02</a>
+                                        <a href="#">03</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End of activity page section
+            ============================================= -->
+			{% endblock mainWrapper %} 	
+
+        {% block SMMMetaTags %}{% include 'home/SEO.html' %}{% endblock SMMMetaTags %}

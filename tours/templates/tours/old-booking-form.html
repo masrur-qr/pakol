@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+
+
+			{% block mainWrapper %}
+			
+			<!-- start Main Wrapper -->
+			<!-- ======================= Start Banner ===================== -->
+			<section class="page-title-banner" style="background-image:url({{tour.Image.url}}); height: 450px" >
+				<div class="container">
+					<div class="row">
+						<div class="tr-list-detail">
+							<div class="tr-list-info">
+								<br> <br>
+								<h2 style="color: white;">Booking Form</h2>
+								<p>Feel the below form and send your enquiry! </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- ======================= End Banner ===================== -->
+				
+			<!-- ============== Tour Detail ====================== -->	
+			<section class="tr-single-detail gray-bg" >
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-sm-12">
+							<div class="row" id="Description">
+								<div class="tr-single-box">
+									<div class="tr-single-body">
+										<h3>Booking form </h3>
+										
+										<p style="text-transform: none;">
+											Please fill out the below form and send us the request. 
+											There are two option for most of the tour with various prices: a) join a group and b) private tour. 
+											You can select one of the option from the "Departure" field below.
+										</p>
+										<form  action="{% url 'tours:send_request' %}" method="POST" > 
+											{% csrf_token %} 
+
+											<div class="form-group" >
+												<label for="departure">Departure:</label> <br>
+												<select class="form-control" id="departure" name="TourDeparture" >
+													{% if "Private Tour" in tour.TourType   %}
+													<option>
+														Book the tour as private tour  
+													</option>
+													{% endif %}
+													{% if departure %}
+														<option selected>
+															{{ departure.DepartingDate }} - {{departure.FinishingDate}} (+)  
+														</option>
+													{%endif%}		
+													{% if thisTourDepartures %}
+														{% for dep in thisTourDepartures %}
+															{%if not dep.id == departure.id %}
+																<option>
+																Join group:	{{dep.DepartingDate}} -- {{dep.FinishingDate}} 
+																</option>
+															{% endif %}
+														{% endfor %}
+													{% else %}
+														<option>
+															No fixed departures. 
+														</option>
+													{% endif %}
+												</select>
+											</div>
+
+											<input name= "firstname" class="form-control" maxlength="255"  placeholder="*First name" required /> <br>
+											<input name= "lastname" class="form-control" maxlength="255"  placeholder="*Last name"  required /><br>
+											<input name="email"   class="form-control" type="text" maxlength="255" placeholder="*Enter Your Email"  required  /> <br>
+											<input name="phone"   class="form-control" type="text" maxlength="255"  placeholder="Enter Your Phone"  /> <br>
+											<input name="country"  class="form-control" type="text" maxlength="255"  placeholder="Enter Your Country"  /> <br>
+											<input name="adults"  class="form-control" type="number" maxlength="255"  placeholder="Number of Adults" /> <br>
+											<input name="children"  class="form-control" type="number" maxlength="255" placeholder="Number of Children"   /> <br>
+											
+											<div class="form-group">
+												<label for="message">Message: </label>
+												<textarea name="message"  class="form-control" id="message" rows="5"></textarea>
+											</div>
+												
+											<input type="text" value="{{tour.TourCode}}" class="form-control" name="TourCode" readonly style="display: none;" />  
+											<input type="text" value="{{tour.Title}}" class="form-control" name="Title"  readonly style="display: none"  />  
+											<input type="text" name="TourURL" value="{{tour.get_absolute_url }}" class="form-control"  readonly style="display: none"  />  
+				
+											<!-- Checkbox here -->
+											<br><br>
+											<input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
+											<div class="row">
+												<div class="col-sm-12 col-md-6" style="margin-bottom:10px;">
+													<button aria-label="{% trans 'Send request' %}"  type="submit"  class="btn btn-success" > {% trans 'Send request' %} </button>
+												</div>
+												<div class="col-sm-12 col-md-6"  >
+													<a href="{% url 'tours:tours' %}"  class="btn btn-info" style="float: right;">View other tours</a>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Sidebar Start -->
+						<div class="col-md-4 col-sm-12" >
+							<!-- Tourist Overview -->
+							<div class="tr-single-box" >
+								<div class="tr-single-header">
+									<h4>Your selection: </h4>
+								</div>
+								<div class="tr-single-body">
+									<div class="row">
+										<div class="col-sm-6 col-md-12">
+											<p style="font-size: smaller; line-height: 25px;">
+												<strong>Tour title:</strong> <span>{{tour.Title}}</span> <br>
+												<strong>Tour type:</strong> <span>{{tour.TourType}}</span>
+												<br>
+												<strong>Duration:</strong> <span>{{tour.Duration}} days</span>
+												<br>
+												<strong>Activity:</strong> <span>{{tour.Activities}}</span>
+												<br>
+												<strong>Destination:</strong> <span>{{tour.Destination.Area}}</span>
+												<br>
+												<strong>Route:</strong> <span>
+
+														{% for Route in tour.Route %}
+															{{Route}}
+															{% if not forloop.last %}<i class="fa fa-long-arrow-right" style="color:#0fb76b;" aria-hidden="true"></i>{% endif %}
+														{% endfor %}
+												</span>
+												<br>
+												<strong>Seasonality:</strong> <span>{{tour.Seasonality}}</span>
+												<br>
+												<strong>Starting Point:</strong> <span>{{tour.StartingPoint }}</span>
+												<br>
+												<strong>Ending Point:</strong> <span>{{tour.EndingPoint}}</span>
+												<br>
+												<!-- <strong>Starting Price:</strong>  -->
+												{% if not tour.Price == 0 %}
+													<strong>Starting price:</strong>
+													<span style="font-size:larger;">
+														{{tour.Price |floatformat:"0"}} USD
+													</span>
+												{% else %}
+													<strong>Price:</strong>
+													<span style="font-style:italic; color: #0fb76b;">
+														Upon request
+													</span>
+												{% endif %}
+
+												<br>
+												<span style="text-transform: none;" >This tour is <u>operated by</u> <strong style="color:#0fb76b;"> {{tour.TourOperator.Company.Name}}</strong>, 
+													running by <em style="color:#0fb76b;">{{tour.TourOperator.Name}}</em> 
+												</span>
+											</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- overview & booking Form -->
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h4>Why booking with us? </h4>
+								</div>
+								<div class="tr-single-body">
+									<form class="book-form">
+										<div class="row">
+											<div class="col-xs-12">
+												<ul class="simple-features-list">
+													<li>Best price guarantee</li>
+													<li>Lots of options</li>
+													<li>Free cancelation </li>
+													<li>Manage your booking</li>
+													<li>Best service providers</li>
+												</ul>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+							
+						</div>
+						<!-- /col-md-4 -->
+					</div>
+				</div>
+			</section>
+			<!-- ============== Tour Detail ====================== -->
+			
+			<!-- end Main Wrapper -->
+			{% endblock mainWrapper %} 	
+
+
+			{% block addToFooter %}
+			
+			{% endblock addToFooter %}
+
+		{% block SMMMetaTags %}
+		<meta name="title" content="{{tour.Title}}">
+		<meta name="description" content="{{tour.ShortDesc}}">
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="{{tour.Title}}" />
+		<meta property="og:description" content="{{tour.ShortDesc|truncatechars:150}}" />
+		<meta property="og:image" content="https://www.discoverthepamirs.com{{tour.Image.url}}" />
+		<meta property="og:image:alt" content="{{tour.Title}}" />
+		<meta property="og:image:type" content="image/jpg" />
+		<meta property="og:url" content="https://www.discoverthepamirs.com{{ tour.get_absolute_url }}" />
+		<meta property="og:site_name" content="DiscoverThePamirs.com" />
+		<!-- Twitter Cards -->
+		<meta name="twitter:title" content="{{tour.Title}}">
+		<meta name="twitter:description" content="{{tour.ShortDesc|truncatechars:150}}">
+		<meta name="twitter:image" content="https://www.discoverthepamirs.com{{tour.Image.url}}">
+		<meta name="twitter:site" content="@SaidmamadG">
+		<meta name="twitter:creator" content="@SaidmamadG">
+		{% endblock SMMMetaTags %}
