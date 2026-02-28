@@ -35,9 +35,9 @@ jobs:
       - name: deploying
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: 45.130.215.156
-          username: root
-          password: bEnr48h*eFpm
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_KEY }}
           script: |
             docker compose pull
             docker compose pull web
