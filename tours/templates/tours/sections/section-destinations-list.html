@@ -1,0 +1,69 @@
+ <!-- Our Destinations Start -->
+ <section class="ptb-100">
+    <div class="destinations-part mb_-30 text-center">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <div class="heading-part text-center mb-30 mb-sm-20">
+                        <h2 class="main_title heading mb-15">Our <span>Destinations</span></h2>
+                        <p class="heading-des">{% autoescape off %} {{obj.Content}} {% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- National or International  -->
+            <div class="tab-content" id="tab_content3">
+                <div class="tab-pane fade show active mb-30" id="national_tour" role="tabpanel" aria-labelledby="national_tour_tab">
+                    <div class="row">
+                        <!-- Pamir  -->
+                        {% for dest in destinations %}
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+                            <div class="desti-item"> 
+                                <img src="{{dest.image_thumbnail.url }}" alt="{{dest.Title}}">
+                                <div class="desti-detail-hover color-white">
+                                    <div class="detail-inner-hover">
+                                        <h4 class="title color-white">{{dest.Title}}</h4>
+                                        <hr>
+                                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                                            <div class="price-box "> 
+                                                <div class="price color-white mb-0"><span>Starting from </span>${{dest.start_price}}</div>
+                                            </div>
+                                            <div class="rating-summary-block m-0">
+                                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                                            </div>
+                                        </div>
+                                        <p class="dec">{{dest.ShortDesc}}</p>
+                                        <div class="packages-btn mt-30 mt-md-15">
+                                            <a class="btn btn-color" href="{{dest.get_absolute_url }}">View Tours</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="desti-detail">
+                                    <div class="detail-inner">
+                                        <h4 class="title color-white">{{dest.Title}}</h4>
+                                        <hr>
+                                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                                            <div class="price-box "> 
+                                                <div class="price color-white mb-0"><span>From </span>${{dest.start_price}}</div>
+                                            </div>
+                                            <div class="rating-summary-block m-0">
+                                                <div class="rating-result" title="70%"> <span style="width:66%"></span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Popular Tour Packages End -->
+
+
+
+

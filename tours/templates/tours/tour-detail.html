@@ -1,0 +1,488 @@
+{% extends 'base.html' %}
+{% load static %}{% load i18n %}
+			{% block title %}{{tour.Title}} | Pakol Travel{% endblock title %}
+			
+			{% block mainWrapper %} 
+           
+            <!-- Bread Crumb STRAT -->
+            <section class="bread bread-banner">
+                <div class="container">
+                <div class="bread-detail text-center d-md-flex align-items-center justify-content-between">
+                    <h4 class="bread-title mb-3 mb-md-0">Tour Detail</h4>
+                    <div class="bread-crumb">
+                    <ul>
+                        <li class="breadcrumb-item"><a href="index-2.html"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tours</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Tour Detail</a></li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <!-- Bread Crumb END --> 
+
+            <!--package Block Start -->
+            <section class="ptb-100 tour-detail">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="tour-item">
+                                <div class="detail-title">
+                                    <h2>{{tour.Title}}</h2>
+                                </div>
+                                
+                                <div class="tour-info pb-4">
+                                <ul class="list-meta d-flex mb-0"> 
+                                    <!-- <li class="mr-2 mr-md-4">
+                                        <div class="user"><a href="#"><span><i class="fas fa-user"></i></span> John Smith</a></div>
+                                    </li>  -->
+                                    <li class="mr-2 mr-md-4">
+                                        <div class="places"><a href="#"><span><i class="fas fa-map-marker-alt"></i></span> {{tour.Destination}} </a></div>
+                                    </li> 
+                                    <!-- <li class="mr-2 mr-md-4">
+                                        <div class="views"><a href="#"><span><i class="fas fa-eye"></i></span> 5984</a></div>
+                                    </li> 
+                                    <li class="mr-2 mr-md-4">
+                                        <div class="likes"><a href="#"><span><i class="fas fa-heart"></i></span> 4563</a></div>
+                                    </li> -->
+                                </ul>
+                                </div>
+                                <div class="single-content-item ptb-25">
+                                <div class="row">
+                                    <div class="col-lg-4 col-6">
+                                        <div class="single-tour-feature d-flex align-items-center mb-3">
+                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                                <span class="icon"><i class="far fa-clock"></i></span>
+                                            </div>
+                                            <div class="single-feature-titles">
+                                                <h5 class="title mb-1">Duration</h5>
+                                                <span class="font-size-13">{{tour.Duration}} Days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                            <span class="icon"><i class="fas fa-users"></i></span>
+                                        </div>
+                                        <div class="single-feature-titles">
+                                            <h5 class="title mb-1">Group Size</h5>
+                                            <span class="font-size-13">{{tour.GroupSize}} People</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                            <span class="icon"><i class="fas fa-globe-americas"></i></span>
+                                        </div>
+                                        <div class="single-feature-titles">
+                                            <h5 class="title mb-1">Tour Type</h5>
+                                            <span class="font-size-13">{{tour.TourType}}</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                        <span class="icon"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <div class="single-feature-titles">
+                                        <h5 class="title mb-1">Date</h5>
+                                        <span class="font-size-13">see 'Departures'</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                        <span class="icon"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <div class="single-feature-titles">
+                                        <h5 class="title mb-1">Min Age</h5>
+                                        <span class="font-size-13">10+</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0">
+                                        <span class="icon"><i class="fas fa-plane"></i></span>
+                                        </div>
+                                        <div class="single-feature-titles">
+                                        <h5 class="title mb-1">Pickup From</h5>
+                                        <span class="font-size-13">Airport</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native"> 
+                                    {% for photo in photos %}
+                                    <a href="#"><img src="{{photo.image.url}}" alt="{{photo.Caption}}"></a> 
+                                    {% endfor %}
+                                    <!-- <a href="#"><img src="/static/pakolak/images/detail_img_2.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_3.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_4.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_5.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_6.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_1.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_2.jpg" alt="Pakol Travel"></a> 
+                                    <a href="#"><img src="/static/pakolak/images/detail_img_3.jpg" alt="Pakol Travel"></a>  -->
+                                </div>
+                            </div>
+                            <div class="tour-detail-tab mt-60">
+                                <ul class="nav nav-tabs  mb-30" id="tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link btn active" id="description_tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn" id="itinerary_tab" data-toggle="tab" href="#itinerary" role="tab" aria-controls="itinerary" aria-selected="false">Itinerary</a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link btn" id="departures_tab" data-toggle="tab" href="#departures" role="tab" aria-controls="departures" aria-selected="false">Departures</a>
+                                </li> -->
+                                </ul>
+                                <div class="tab-content" id="tab_content">
+                                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description_tab">
+                                        <div class="description"> 
+                                            <div>
+                                                {% autoescape off %} {{tour.Description}} {% endautoescape %}
+                                            </div>
+                                            <div class="row mt-30">
+                                                <div class="col-sm-6 col-12">
+                                                <h4 class="title pb-2">Included</h4>
+                                                <ul class="list-items">
+                                                    {% for Inclusion in tour.Inclusions %}
+                                                    <li><i class="fas fa-check text-success"></i>{{Inclusion}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                </div>
+                                                <div class="col-sm-6 col-12 mt-3 mt-sm-0">
+                                                <h4 class="title pb-2">Not Included</h4>
+                                                <ul class="list-items">
+                                                    {% for exclusion in tour.Exclusions %}
+                                                    <li><i class="fas fa-times text-danger"></i>{{exclusion}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="itinerary" role="tabpanel" aria-labelledby="itinerary_tab">
+                                        <div class="timeline"> 
+                                        <ul class="timeline-tour"> 
+                                            {% for itinerary in itineraries %}
+                                            <li class="d-sm-flex"> 
+                                                {% if itinerary.Image %}
+                                                <img src="{{ itinerary.Image.url }}" alt="{{itinerary.Title}}" class="tour-img"> 
+                                                {% endif %}
+                                                <div class="timeline-data ml-0 ml-sm-4 mt-3 mt-sm-0"> 
+                                                    <div class="session session-1"> 
+                                                        <div class="day"><b>Day {{forloop.counter}}: {{ itinerary.Title }}</b> <span class="time text-primary"></span></div> 
+                                                        <!-- <h5 class=" mt-1">{{ itinerary.Title }}</h5>  -->
+                                                        <p class="mb-0">
+                                                            {{ itinerary.Description }}
+                                                            
+                                                            
+                                                        </p> 
+                                                    </div> 
+                                                </div> 
+                                            </li>
+                                            {% endfor %}
+                                            
+                                        </ul> 
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="departures" role="tabpanel" aria-labelledby="departures_tab">
+                                        <div class="table-responsive ">   
+                                        <h4 class="title pb-2">Departures </h4>
+                                        
+
+
+                                        <div class="tr-single-body table-responsive">
+                                                    
+                                            <table class="table table-striped table-bordered">
+                                                {% if departures %}
+                                                <thead >
+                                                    <tr>
+                                                            <th>{% trans 'Departing' %}</th>
+                                                            <th>{% trans 'Finishing' %}</th>
+                                                            <th>{% trans 'Places' %}</th>
+                                                        </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                                            
+                                                    {% for departure in departures %}
+                                                        <tr>
+                                                            <td>{{departure.DepartingDate|date:"M d, Y"}}</td>
+                                                            <td>{{departure.FinishingDate}}</td>
+                                                            <td>	
+                                                                {% if departure.departure_place_availability  %}
+                                                                    <span style="color:red; font-weight: bold; font-size: smaller; font-style:italic;">
+                                                                        {% if departure.departure_place_availability.AvailablePlaces == 1 %}
+                                                                            {{departure.departure_place_availability.AvailablePlaces }} {% trans 'place left' %}
+                                                                        {% else %}
+                                                                            {{departure.departure_place_availability.AvailablePlaces }} {% trans 'place left' %}
+                                                                        {%endif%}
+                                                                    </span>
+                                                                {% else %}
+                                                                {% trans 'NA' %}
+                                                                {% endif %}
+                                                            
+                                                        </tr>
+                                    
+                                                        
+                                                    {% empty %}
+                                                        <p><i>{% trans 'No departures have been added for this tour.' %}</i></p>
+                                                    {% endfor %}
+                                
+                                                </tbody>
+                                                {% endif %}
+                                            </table>
+                                            
+                                        </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        <!-- Sidebar  -->
+                        <div class="col-lg-4">
+                            <div class="sidebar-block sidebar-block-1 pt-sm-60 mt-md-30">
+                                <div class="box-shadow radius-5px p-25 p-xs-15">
+                                <div class="sidebar-box listing-box"> <span class="opener plus"></span>
+                                    <div class="sidebar-title">
+                                        <h3><span>Tour Booking</span></h3>
+                                    </div>
+                                    <div class="sidebar-contant pt-4">
+                                        <div class=" main-form tour-search-detail">
+                                            <div class="price-box d-flex align-items-center mb-3"> 
+                                            <span class="mr-1">Starting from</span>
+                                            <h3 class="price mr-1 mb-0">${{tour.Price|floatformat:"0"}}</h3> 
+                                            <!-- <del class="old-price">$620.00</del>  -->
+                                            </div>
+                                            <form class="main-form" action="" method="POST" >{% csrf_token %}
+                                                <div class="sidebar-date">
+                                                    <!-- <div class="form-group">
+                                                        <div class="input-inner mb-3 mb-md-0">
+                                                                                
+                                                            <label><span><i class="far fa-calendar-alt"></i></span> Departure </label>
+                                                            <select class="select" name="TourDeparture">
+                                                                {% for departure in departures %}
+                                                                <option value="{{departure.id}}">{{departure.DepartingDate|date:"M d Y, D"}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>   
+                                                    </div> -->
+                                                    <div class="form-group">
+                                                        <div class="input-inner mb-3 mb-xl-0">
+                                                            <label for="name">Name</label>
+                                                            <div class="input-box">
+                                                                <input type="text" name="name" id="name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-inner mb-3 mb-xl-0">
+                                                            <label for="email">Email</label>
+                                                            <div class="input-box">
+                                                                <input type="email" name="email" id="email" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="input-inner mb-3 mb-xl-0">
+                                                            <label for="message">Message</label>
+                                                            <div class="input-box">
+                                                                <textarea name="message" id="message" ></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sidebar-guest">
+                                                    <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                                        <label class="">Numper of <span>Tourists</span></label>
+                                                        <div class="product-qty ">
+                                                            <div class="custom-qty">
+                                                                <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) result.value--;return false;" class="reduced items" type="button">  </button>
+                                                                <input type="text" class="input-text qty" title="Qty" value="1" maxlength="20" id="qty" name="tourists">
+                                                                <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items" type="button">  </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="tour-booking-btn pt-3">
+                                                    <input type="number" name="tourid" hidden value="{{tour.id}}">
+                                                    <button  type="submit" class="btn btn-color w-100 mb-3">Book Now</button>
+                                                    <!-- <a href="#" class="btn btn-light w-100">Add to Wishlist</a> -->
+                                                    
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sidebar-box listing-box"> <span class="opener plus"></span>
+                                    <div class="sidebar-title">
+                                        <h3><span>Tour Information</span></h3>
+                                    </div>
+                                    <div class="sidebar-contant pt-4">
+                                        <div class="organizer ">
+                                            
+                                            <div class="sidebar-tab mt-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="heading-part mb-20">
+                                                        <div id="tabs" class="contact-tour-tab tabs-nav">
+                                                            <ul class="tab-stap d-xl-flex d-lg-block d-flex">
+                                                                <li><a href="javascript:void(0)" class="tab-step2 btn selected" title="step2">Brief info</a></li>
+                                                                <li><a href="javascript:void(0)" class="tab-step1 btn" title="step1">Contact</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab_content">
+                                                <div id="items">
+                                                    <ul>
+                                                        <li>
+                                                            <div id="data-step2" class="items-step2 contact-info position-r selected" data-temp="tabdata">
+                                                                <div class="table-responsive"> 
+                                                                    <table class="table table-bordered "> 
+                                                                        <tbody>
+                                                                        
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Tour name</a></td>
+                                                                                <td class="tour-date">{{tour.Title}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Route</a></td>
+                                                                                <td class="tour-date">
+                                                                                    {% for route in tour.Route %}
+                                                                                    {{route}} {% if not forloop.last %}-{% endif %} 
+                                                                                    {% endfor %}
+                                                                                </td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Destination</a></td>
+                                                                                <td class="tour-date">{{tour.Destination}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Group Size</a></td>
+                                                                                <td class="tour-date">{{tour.GroupSize}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Seasonality</a></td>
+                                                                                <td class="tour-date">{{tour.Seasonality}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Days</a></td>
+                                                                                <td class="tour-date">{{tour.NumberOfDays}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td class="tour-city"><a href="#">Nights</a></td>
+                                                                                <td class="tour-date">{{tour.NumberOfNights}}</td>
+                                                                            </tr> 
+                                                                        </tbody>
+                                                                    </table> 
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div id="data-step1" class="items-step1 contact-info position-r" data-temp="tabdata">
+                                                                <ul class="address">
+                                                                    <li class="item">
+                                                                        <div class="address-icon icon1">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M172.3 501.7C27 291 0 269.4 0 192 0 86 86 0 192 0s192 86 192 192c0 77.4-27 99-172.3 309.7-9.5 13.7-29.9 13.7-39.4 0h0zM192 272c44.2 0 80-35.8 80-80s-35.8-80-80-80-80 35.8-80 80 35.8 80 80 80z" fill="#fff"/></svg>
+                                                                        </div>
+                                                                        <p class="address mb-0">Pamir, Tajikistan</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="address-icon icon2">
+                                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
+                                                                        </div>
+                                                                        <a href="tel:+992938757593">+992 93 875 7593</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="address-icon icon3">
+                                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+                                                                        </div>
+                                                                        <a href="mailto:info@pakoltravel.com">info@pakoltravel.com</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="address-icon icon4">
+                                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="globe-americas" class="svg-inline--fa fa-globe-americas fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm82.29 357.6c-3.9 3.88-7.99 7.95-11.31 11.28-2.99 3-5.1 6.7-6.17 10.71-1.51 5.66-2.73 11.38-4.77 16.87l-17.39 46.85c-13.76 3-28 4.69-42.65 4.69v-27.38c1.69-12.62-7.64-36.26-22.63-51.25-6-6-9.37-14.14-9.37-22.63v-32.01c0-11.64-6.27-22.34-16.46-27.97-14.37-7.95-34.81-19.06-48.81-26.11-11.48-5.78-22.1-13.14-31.65-21.75l-.8-.72a114.792 114.792 0 0 1-18.06-20.74c-9.38-13.77-24.66-36.42-34.59-51.14 20.47-45.5 57.36-82.04 103.2-101.89l24.01 12.01C203.48 89.74 216 82.01 216 70.11v-11.3c7.99-1.29 16.12-2.11 24.39-2.42l28.3 28.3c6.25 6.25 6.25 16.38 0 22.63L264 112l-10.34 10.34c-3.12 3.12-3.12 8.19 0 11.31l4.69 4.69c3.12 3.12 3.12 8.19 0 11.31l-8 8a8.008 8.008 0 0 1-5.66 2.34h-8.99c-2.08 0-4.08.81-5.58 2.27l-9.92 9.65a8.008 8.008 0 0 0-1.58 9.31l15.59 31.19c2.66 5.32-1.21 11.58-7.15 11.58h-5.64c-1.93 0-3.79-.7-5.24-1.96l-9.28-8.06a16.017 16.017 0 0 0-15.55-3.1l-31.17 10.39a11.95 11.95 0 0 0-8.17 11.34c0 4.53 2.56 8.66 6.61 10.69l11.08 5.54c9.41 4.71 19.79 7.16 30.31 7.16s22.59 27.29 32 32h66.75c8.49 0 16.62 3.37 22.63 9.37l13.69 13.69a30.503 30.503 0 0 1 8.93 21.57 46.536 46.536 0 0 1-13.72 32.98zM417 274.25c-5.79-1.45-10.84-5-14.15-9.97l-17.98-26.97a23.97 23.97 0 0 1 0-26.62l19.59-29.38c2.32-3.47 5.5-6.29 9.24-8.15l12.98-6.49C440.2 193.59 448 223.87 448 256c0 8.67-.74 17.16-1.82 25.54L417 274.25z"></path></svg>
+                                                                        </div>
+                                                                        <a href="https://pakoltravel.com">pakoltravel.com</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="sidebar-box"> <span class="opener plus"></span>
+                                    <div class="sidebar-title">
+                                    <h3><span>Need Help</span></h3>
+                                    </div>
+                                    <div class="sidebar-contant pt-3">
+                                    <div class="support-service p-25 p-xs-15">
+                                        <span><i class="fas fa-phone-alt"></i></span>
+                                        <h3>+992 93 875 7593</h3>
+                                        <p class="m-0">24/7 Available</p>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--package Block End -->
+
+           
+			{% endblock mainWrapper %} 	
+
+    {% block SMMMetaTags %}
+    <meta name="title" content="{{tour.Title}} | {% trans 'Tours' %} - Pakol Travel">
+    <meta name="description" content="{{tour.ShortDesc|truncatechars:160}}">
+    <link rel="canonical" href="https://{{ request.META.HTTP_HOST }}{{ request.path }}" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{tour.Title}} | {% trans 'Tours' %} - Pakol Travel" />
+    <meta property="og:description" content="{{tour.ShortDesc|truncatechars:160}}" />
+    <meta property="og:image" content="https://{{ request.META.HTTP_HOST }}{{tour.Image.url}}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="768" />
+    <meta property="og:image:alt" content="{{tour.Title}}" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:url" content="https://{{ request.META.HTTP_HOST }}{{ request.path }}" />
+    <meta property="og:site_name" content="DiscoverThePamirs.com" />
+    <!-- Twitter Cards -->
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@discovThePamirs">
+    <meta name="twitter:creator" content="@SaidmamadG">
+    <meta name="twitter:title" content="{{tour.Title}} | {% trans 'Tours' %} - Pakol Travel">
+    <meta property="og:description" content="{{tour.ShortDesc|truncatechars:160}}" />
+    <meta name="twitter:image" content="https://{{ request.META.HTTP_HOST }}{{tour.Image.url}}">
+    <meta name="twitter:widgets:new-embed-design" content="on"/>
+    <meta name="twitter:widgets:csp" content="on"/>
+    {% endblock SMMMetaTags %}

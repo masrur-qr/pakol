@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %} {% load i18n %}{% load customtags %}
+
+        {% block title %}{{SEO.Title}}{% endblock title %}
+			
+			
+			{% block mainWrapper %}
+
+            <!-- Bread Crumb STRAT -->
+            <section class="bread bread-banner">
+                <div class="container">
+                <div class="bread-detail text-center d-md-flex align-items-center justify-content-between">
+                    <h4 class="bread-title mb-3 mb-md-0">Destinations</h4>
+                    <div class="bread-crumb">
+                        <ul>
+                            <li class="breadcrumb-item"><a href="{% url 'home:homePage' %}"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'tours:tours' %}">Tours</a></li>
+                            <li class="breadcrumb-item active"><a href="#">Destinations</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <!-- Bread Crumb END -->
+
+           {% include 'tours/sections/section-destinations-list.html' %}
+
+			{% endblock mainWrapper %} 	
+
+    {% block SMMMetaTags %}{% include 'home/SEO.html' %}{% endblock SMMMetaTags %}
+
+
+
+
+        <!-- Nothern Tajikistan -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+            <div class="desti-item"> 
+                <img src="/static/pakoltravel/north-tajikistan.jpg" alt="Pakol Travel">
+                <div class="desti-detail-hover color-white">
+                    <div class="detail-inner-hover">
+                        <h4 class="title color-white">Nothern Tajikistan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>Starting from </span>$459</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                        <p class="dec">Tours and activities to the North of Tajikistan.</p>
+                        <div class="packages-btn mt-30 mt-md-15">
+                            <a class="btn btn-color" href="/tours/destinations/nothern-tajikistan/">View Tours</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="desti-detail">
+                    <div class="detail-inner">
+                        <h4 class="title color-white">Nothern Tajikistan </h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>From </span>$459</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Southern Tajikistan -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+            <div class="desti-item"> 
+                <img src="/static/pakoltravel/nothern-tajikistan.jpg" alt="Pakol Travel">
+                <div class="desti-detail-hover color-white">
+                    <div class="detail-inner-hover">
+                        <h4 class="title color-white">Southern Tajikistan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>Starting from </span>$499</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                        <p class="dec">Tours and activities to the South of Tajikistan.</p>
+                        <div class="packages-btn mt-30 mt-md-15">
+                            <a class="btn btn-color" href="/tours/destinations/southern-tajikistan/">View Tours</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="desti-detail">
+                    <div class="detail-inner">
+                        <h4 class="title color-white">Southern Tajikistan </h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>From </span>$499</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dushanbe and Surroundings -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+            <div class="desti-item"> 
+                <img src="/static/pakoltravel/dushanbe.jpg" alt="Dushanbe and surrounding tours ">
+                <div class="desti-detail-hover color-white">
+                    <div class="detail-inner-hover">
+                        <h4 class="title color-white">Dushanbe and Surroundings</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>Starting from </span>$99</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                        <p class="dec">Tours and activities in Dushanbe and surroundings.</p>
+                        <div class="packages-btn mt-30 mt-md-15">
+                            <a class="btn btn-color" href="/tours/destinations/dushanbe-and-surroundings/">View Tours</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="desti-detail">
+                    <div class="detail-inner">
+                        <h4 class="title color-white">Dushanbe and Surroundings </h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>From </span>$99</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Afghanistan -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+            <div class="desti-item"> 
+                <img src="/static/pakoltravel/dushanbe.jpg" alt="Afghanistan Wakhan">
+                <div class="desti-detail-hover color-white">
+                    <div class="detail-inner-hover">
+                        <h4 class="title color-white">Afghanistan Wakhan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>Starting from </span>$1590</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                        <p class="dec">Tours and activities Wakhan Valley of Afghanistan.</p>
+                        <div class="packages-btn mt-30 mt-md-15">
+                            <a class="btn btn-color" href="/tours/destinations/afghanistan-wakhan/">View Tours</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="desti-detail">
+                    <div class="detail-inner">
+                        <h4 class="title color-white">Afghanistan Wakhan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>From </span>$1590</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Rasht Valley -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-30">
+            <div class="desti-item"> 
+                <img src="/static/pakoltravel/pamir.jpg" alt="Afghanistan Wakhan">
+                <div class="desti-detail-hover color-white">
+                    <div class="detail-inner-hover">
+                        <h4 class="title color-white">Afghanistan Wakhan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3 mb-1 mb-md-2">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>Starting from </span>$1590</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                        <p class="dec">Tours and activities Rasht Valley.</p>
+                        <div class="packages-btn mt-30 mt-md-15">
+                            <a class="btn btn-color" href="/tours/destinations/rasht-valley/">View Tours</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="desti-detail">
+                    <div class="detail-inner">
+                        <h4 class="title color-white">Rasht Wakhan</h4>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between mt-2 mt-md-3">
+                            <div class="price-box "> 
+                                <div class="price color-white mb-0"><span>From </span>$1590</div>
+                            </div>
+                            <div class="rating-summary-block m-0">
+                                <div class="rating-result" title="80%"> <span style="width:66%"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
