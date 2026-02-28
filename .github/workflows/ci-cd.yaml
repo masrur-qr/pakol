@@ -1,0 +1,19 @@
+name: Run Django Tests
+on:
+  push:
+    branches: [main,masrur]
+jobs:
+  test-django-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: installer
+        run: pip install -r requirements.txt
+      - name: runner
+        run: python manage.py runserver
