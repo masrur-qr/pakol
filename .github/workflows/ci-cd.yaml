@@ -39,6 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_KEY }}
           script: |
+            cd /root/pakol/old
             docker compose pull
             docker compose pull web
             docker compose up -d --remove-orphans
