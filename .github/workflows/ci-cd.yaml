@@ -39,6 +39,6 @@ jobs:
           username: root
           password: bEnr48h*eFpm
           script: |
-            docker-compose pull
-            docker-compose pull web
-            docker-compose up -d --remove-orphans
+            docker compose pull
+            docker compose pull web
+            docker compose up -d --remove-orphans
