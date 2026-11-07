@@ -4,7 +4,7 @@ on:
     branches: [main,masrur]
 jobs:
   test-django-app:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: testenv
     steps:
       - uses: actions/checkout@v3
